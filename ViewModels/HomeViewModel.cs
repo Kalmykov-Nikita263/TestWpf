@@ -42,11 +42,11 @@ public class HomeViewModel : ViewModelBase
         set { _assets = value; OnPropertyChanged(); }
     }
 
+    public string CurrentUserName { get; set; } = "Имя пользователя: " + UserDataContext.Instance.CurrentUser.UserName;
+
     public ICommand EditCommand { get; set; }
 
     public ICommand DeleteAssetCommand { get; set; }
-
-    public UserDataContext UserDataContext { get; set; }
 
     private async Task LoadDataAsync()
     {

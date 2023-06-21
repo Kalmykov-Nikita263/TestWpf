@@ -3,15 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewmodels="clr-namespace:TestWpf.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
+             xmlns:viewmodels="clr-namespace:TestWpf.ViewModels" xmlns:infrastructure="clr-namespace:TestWpf.Infrastructure" d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="500" d:DesignWidth="500"
              Background="#252525"
              >
     <Grid>
-        <Label Content="{Binding UserDataContext.CurrentUser.UserName}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="22,0,0,0"/>
-        <Button Content="Выход" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="733,0,0,0" />
-        <DataGrid x:Name="dgAssets" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Assets}" Margin="0,74,0,0">
+        <Label Content="{Binding CurrentUserName}" HorizontalAlignment="Left" 
+               VerticalAlignment="Top" Foreground="White" Margin="22,0,0,0"/>
+        <Button Content="Выход" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="409,0,0,0" />
+
+        <DataGrid x:Name="dgAssets" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Assets}" Margin="0,74,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Идентификатор" Binding="{Binding AssetId}" Width="*">
                     <DataGridTextColumn.ElementStyle>
@@ -39,8 +42,13 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEdit" Content="Изменить" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Margin="5" />
-                                <Button x:Name="btnDelete" Content="Удалить" Command="{Binding DataContext.DeleteAssetCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Margin="5" />
+                                <Button Content="Изменить" Command="{Binding DataContext.EditCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        CommandParameter="{Binding}" Margin="5" />
+
+                                <Button Content="Удалить" Command="{Binding DataContext.DeleteAssetCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        CommandParameter="{Binding}" Margin="5" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

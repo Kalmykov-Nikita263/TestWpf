@@ -6,6 +6,7 @@
              xmlns:v="clr-namespace:TestWpf.Views">
     <Application.Resources>
 
+        <!--Разместить ViewModel-->
         <DataTemplate DataType="{x:Type TypeName=vm:AuthorizationViewModel}">
             <v:Authorization/>
         </DataTemplate>
